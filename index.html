@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gadget Sore || App</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <header>
+        <nav role="navbar">
+            <article id="navbar">
+                <div class="nav-logo">
+                    <img src="./assests/Media/gadget-store.jpg" alt="Logo">
+                </div>
+
+                <div id="search-navigation">
+                    <div class="search-bar">
+                        <input type="search" id="search-input" placeholder="Search for Item"
+                            oninput="takingValueSearch(this)">
+                        <button onclick="catchSearch()">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                    <div id="search-suggestion"></div>
+                </div>
+
+                <div class="nav-foot">
+                    <div id="cart">
+                        <i class="fa-brands fa-opencart"></i>
+                        <span id="cart-count">0</span>
+                        <p>Cart</p>
+                    </div>
+
+                    <div id="sign-in">
+                        <i class="fa-regular fa-user"></i>
+                        <p>Sign In</p>
+                    </div>
+                    <div id="order-track">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <p>Track <br> Your Order</p>
+                    </div>
+
+                    <div id="hamburger">
+                        <i class="fa-solid fa-bars-staggered"></i>
+                    </div>
+                </div>
+            </article>
+        </nav>
+    </header>
+
+    <main>
+        <div id="product-container"></div>
+        <div id="prodect-specs-container">
+
+        </div>
+    </main>
+</body>
+<script src="./index.js"></script>
+
+</html>

@@ -1,5 +1,4 @@
 let searchNavigation = document.getElementById("search-navigation");
-let userSearchInput = document.getElementById("search-input");
 let searchSuggestionContainer = document.getElementById("search-suggestion")
 var mobileProducts = {
     Apple: {
@@ -257,25 +256,25 @@ for (var phones in mobileProducts) {
         <i class="fa-solid fa-xmark"></i>
         </div>
         <div class = "specs-content">
-            <div class="specs-image">
-              <img src = "${mobileProducts[phones][mobileType].profilePicture}"/>
-            </div>
-
-            <div class = "specs-about">
-               <h1>${mobileProducts[phones][mobileType].Name}</h1>
-               <span id= "availablility"> ${availablility}</span>
-               <div class = "gen-info">
-               <span>Color : ${mobileProducts[phones][mobileType].color}</span>
-               <span>Memory : ${mobileProducts[phones][mobileType].ram} / ${mobileProducts[phones][mobileType].rom}</span>
-               <span>Display : ${mobileProducts[phones][mobileType].display}</span>
-               <span>Battery : ${mobileProducts[phones][mobileType].batteryTime}</span>
-               </div>
-               <span id= "price-tag">Prices : ${mobileProducts[phones][mobileType].Prices}</span>
-               <div class = "specs-btn-container">
-                  <button id="cart-btn"> Add to Cart </button>
-                  <button id="like-btn"> Like </button>
-               </div>
-            </div>
+        <div class="specs-image">
+        <img src = "${mobileProducts[phones][mobileType].profilePicture}"/>
+        </div>
+        
+        <div class = "specs-about">
+        <h1>${mobileProducts[phones][mobileType].Name}</h1>
+        <span id= "availablility"> ${availablility}</span>
+        <div class = "gen-info">
+        <span>Color : ${mobileProducts[phones][mobileType].color}</span>
+        <span>Memory : ${mobileProducts[phones][mobileType].ram} / ${mobileProducts[phones][mobileType].rom}</span>
+        <span>Display : ${mobileProducts[phones][mobileType].display}</span>
+        <span>Battery : ${mobileProducts[phones][mobileType].batteryTime}</span>
+        </div>
+        <span id= "price-tag">Prices : ${mobileProducts[phones][mobileType].Prices}</span>
+        <div class = "specs-btn-container">
+        <button id="cart-btn"> Add to Cart </button>
+        <button id="like-btn"> Like </button>
+        </div>
+        </div>
         </div>`
 
         productCard.appendChild(specsContainer);
@@ -304,9 +303,10 @@ function showSpecs(element) {
     let productContent = document.getElementById("product-content");
     productContent.style.zIndex = "-1";
     specsBoxContainer.style.display = "flex";
-    document.body.style.overflow = "hidden"; 
+    document.body.style.overflow = "hidden";
     specsBoxContainer.classList.add("back-drop-filter")
 }
+
 
 function removeSpecs(element) {
     let specsBoxContainer = element.parentElement;
@@ -315,13 +315,14 @@ function removeSpecs(element) {
 
 
 // OnInput Function in Search Bar 
+let userSearchInput = document.getElementById("search-input");
 let inputFromUser = document.createElement("div");
 inputFromUser.className = "input-from-user";
 function takingValueSearch(element) {
     inputFromUser.innerHTML = `
-      <p>
-      <span><i class="fa-solid fa-magnifying-glass"></i><span>
-       ${element.value}</p>
+    <p>
+    <span><i class="fa-solid fa-magnifying-glass"></i><span>
+    ${element.value}</p>
     `
     searchSuggestionContainer.appendChild(inputFromUser);
 
@@ -333,4 +334,22 @@ function takingValueSearch(element) {
         searchSuggestionContainer.style.display = "none";
     })
 }
+
+let presentItems = [];
+for (var items in mobileProducts) {
+    for (var keys in mobileProducts[items]) {
+        presentItems.push(mobileProducts[items][keys].Name)
+    }
+}
+let userSearchItem;
+function catchSearch() {
+    userSearchItem = userSearchInput.value;
+    console.log(userSearchItem);
+    for (var i = 0; i < presentItems.length; i++) {
+           
+    }
+
+}
+
+
 

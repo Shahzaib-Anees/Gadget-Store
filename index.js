@@ -6,31 +6,33 @@ var mobileProducts = {
         Iphone6: {
             Name: "Iphone 6",
             type: "Mobile",
-            color: "black",
+            color: "Black",
             ram: "1gb",
             rom: "64gb",
             batteryTime: "1,810mAh",
             display: "4.7 inches",
             profilePicture: "./assests/Media/iphone6.jpeg",
             Prices: "43,999",
-            Pta: true
+            Pta: true,
+            avalaible: true,
         },
         Iphone8: {
             Name: "Iphone 8",
             type: "Mobile",
-            color: "gold",
+            color: "Gold",
             ram: "2gb",
             rom: "256gb",
             batteryTime: "1821mAh",
             display: "4.7 inches",
             profilePicture: "./assests/Media/iphone8.jpeg",
             Prices: "108,610",
-            Pta: true
+            Pta: true,
+            avalaible: true,
         },
         iphoneX: {
             Name: "Iphone X",
             type: "Mobile",
-            color: "white",
+            color: "White",
             ram: "3gb",
             rom: "256gb",
             batteryTime: "2716mAh",
@@ -38,6 +40,7 @@ var mobileProducts = {
             profilePicture: "./assests/Media/iphneX.jpeg",
             Prices: "144,999",
             Pta: true,
+            avalaible: true,
         },
         Iphone11: {
             Name: "Iphone 11",
@@ -49,7 +52,8 @@ var mobileProducts = {
             display: "5.8 inches",
             profilePicture: "./assests/Media/iphone11.jpeg",
             Prices: "178,000",
-            Pta: true
+            Pta: true,
+            avalaible: true,
         },
         Iphone12: {
             Name: "Iphone 12",
@@ -61,7 +65,8 @@ var mobileProducts = {
             display: "6.1 inches",
             profilePicture: "./assests/Media/iphone12.jpeg",
             Prices: "179,999",
-            Pta: true
+            Pta: true,
+            avalaible: true,
         }
     },
     Samsung: {
@@ -75,7 +80,8 @@ var mobileProducts = {
             display: "6.2 inches",
             profilePicture: "./assests/Media/galaxy-S21.jpeg",
             Prices: "176,499",
-            Pta: true
+            Pta: true,
+            avalaible: true,
         },
         galaxy_A35: {
             Name: "Samsung Galaxy A35",
@@ -87,7 +93,8 @@ var mobileProducts = {
             display: "6.6 inches",
             profilePicture: "./assests/Media/galaxy_A35.jpeg",
             Prices: "114,999",
-            Pta: true
+            Pta: true,
+            avalaible: true,
         },
         galaxy_A06: {
             Name: "Samsung Galaxy A05",
@@ -99,7 +106,8 @@ var mobileProducts = {
             display: "6.7 inches",
             profilePicture: "./assests/Media/galaxy-A05.jpeg",
             Prices: "36,499",
-            Pta: true
+            Pta: true,
+            avalaible: true,
         }
     },
     Infinix: {
@@ -113,7 +121,8 @@ var mobileProducts = {
             display: "6.78 inches",
             profilePicture: "./assests/Media/hot_40.jpeg",
             Prices: "45,999",
-            Pta: true
+            Pta: true,
+            avalaible: true,
         },
         note_40: {
             Name: "Infinix Note 40",
@@ -125,7 +134,8 @@ var mobileProducts = {
             display: "6.78 inches",
             profilePicture: "./assests/Media/note_40.jpeg",
             Prices: "54,999",
-            Pta: true
+            Pta: true,
+            avalaible: true,
         },
         hot_30: {
             Name: "Infinix Hot 30",
@@ -137,7 +147,8 @@ var mobileProducts = {
             display: "6.78 inches",
             profilePicture: "./assests/Media/hot_30.jpg",
             Prices: "34,999",
-            Pta: true
+            Pta: true,
+            avalaible: true,
         }
 
     },
@@ -152,7 +163,8 @@ var mobileProducts = {
             display: "6.78 inches",
             profilePicture: "./assests/Media/pova_06_pro.jpeg",
             Prices: "24,799",
-            Pta: true
+            Pta: true,
+            avalaible: true,
         },
         spark_20: {
             Name: "Tecno Spark 20",
@@ -164,7 +176,8 @@ var mobileProducts = {
             display: "6.6 inches",
             profilePicture: "./assests/Media/spark_20.jpeg",
             Prices: "31,799",
-            Pta: true
+            Pta: true,
+            avalaible: true,
         },
         camon_20: {
             Name: "Tecno Camon 20",
@@ -176,7 +189,8 @@ var mobileProducts = {
             display: "6.67 inches",
             profilePicture: "./assests/Media/camon_20.jpeg",
             Prices: "41,499",
-            Pta: true
+            Pta: true,
+            avalaible: true,
         }
     }
 
@@ -195,16 +209,16 @@ for (var phones in mobileProducts) {
         productContainer.appendChild(productCard);
         // Product Content 
         let productContent = document.createElement("div");
-        productContent.className = "product-content";
+        productContent.setAttribute("id", "product-content");
         productCard.appendChild(productContent);
         productContent.setAttribute("onmouseenter", "viewMoreShow(this)");
         productContent.setAttribute("onmouseover", "viewMoreShow(this)");
         productContent.setAttribute("onmouseleave", "viewMoreHide(this)");
 
         // View More Button 
-        let viewMoreButton = document.createElement("button");
+        let viewMoreButton = document.createElement("p");
         viewMoreButton.className = "view-more";
-        viewMoreButton.innerText = "View More >>";
+        viewMoreButton.innerText = "Quic-View >>";
         viewMoreButton.setAttribute("onclick", "showSpecs(this)")
         productCard.appendChild(viewMoreButton);
 
@@ -230,13 +244,42 @@ for (var phones in mobileProducts) {
             productContent.appendChild(ptaTag);
         }
         // // Specs Container
-        // let specsContainer = document.createElement("div");
-        // specsContainer.setAttribute("id", "specs-container");
-        // specsContainer.innerHTML = `<div class="specs-image">
-        //    <img src = "${mobileProducts[phones][mobileType].profilePicture}"/>
-        // </div>`
-        // productCard.appendChild(specsContainer);
-        // console.log(productCard);
+        let availablility;
+        if (mobileProducts[phones][mobileType].avalaible === true) {
+            availablility = "Available in Stocks";
+        } else {
+            availablility = "Out of Stock";
+        }
+
+        let specsContainer = document.createElement("div");
+        specsContainer.setAttribute("id", "specs-container");
+        specsContainer.innerHTML = `<div class= "cross-icon" onclick = "removeSpecs(this)">
+        <i class="fa-solid fa-xmark"></i>
+        </div>
+        <div class = "specs-content">
+            <div class="specs-image">
+              <img src = "${mobileProducts[phones][mobileType].profilePicture}"/>
+            </div>
+
+            <div class = "specs-about">
+               <h1>${mobileProducts[phones][mobileType].Name}</h1>
+               <span id= "availablility"> ${availablility}</span>
+               <div class = "gen-info">
+               <span>Color : ${mobileProducts[phones][mobileType].color}</span>
+               <span>Memory : ${mobileProducts[phones][mobileType].ram} / ${mobileProducts[phones][mobileType].rom}</span>
+               <span>Display : ${mobileProducts[phones][mobileType].display}</span>
+               <span>Battery : ${mobileProducts[phones][mobileType].batteryTime}</span>
+               </div>
+               <span id= "price-tag">Prices : ${mobileProducts[phones][mobileType].Prices}</span>
+               <div class = "specs-btn-container">
+                  <button id="cart-btn"> Add to Cart </button>
+                  <button id="like-btn"> Like </button>
+               </div>
+            </div>
+        </div>`
+
+        productCard.appendChild(specsContainer);
+        console.log(productCard);
 
     }
 }
@@ -245,8 +288,7 @@ for (var phones in mobileProducts) {
 function viewMoreShow(element) {
     let viewMoreButton = element.parentElement.firstChild.nextSibling;
     viewMoreButton.style.display = "flex";
-    element.classList.add("filter")
-    // console.log(element);
+    element.classList.add("filter");
 }
 
 
@@ -256,15 +298,23 @@ function viewMoreHide(element) {
     element.classList.remove("filter");
 }
 
+// Specification Function 
+function showSpecs(element) {
+    let specsBoxContainer = element.parentElement.firstChild.nextSibling.nextSibling;
+    let productContent = document.getElementById("product-content");
+    productContent.style.zIndex = "-1";
+    specsBoxContainer.style.display = "flex";
+    document.body.style.overflow = "hidden"; 
+    specsBoxContainer.classList.add("back-drop-filter")
+}
+
+function removeSpecs(element) {
+    let specsBoxContainer = element.parentElement;
+    specsBoxContainer.style.display = "none";
+}
 
 
-// function showSpecs() {
-
-// }
-
-
-
-// OnInout Function in Search Bar 
+// OnInput Function in Search Bar 
 let inputFromUser = document.createElement("div");
 inputFromUser.className = "input-from-user";
 function takingValueSearch(element) {
@@ -275,11 +325,11 @@ function takingValueSearch(element) {
     `
     searchSuggestionContainer.appendChild(inputFromUser);
 
-    userSearchInput.addEventListener("focus", function(){
+    userSearchInput.addEventListener("focus", function () {
         searchSuggestionContainer.style.display = "flex";
     })
 
-    userSearchInput.addEventListener("blur", function(){
+    userSearchInput.addEventListener("blur", function () {
         searchSuggestionContainer.style.display = "none";
     })
 }

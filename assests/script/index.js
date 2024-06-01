@@ -14,6 +14,7 @@ var mobileProducts = {
             Prices: "43,999",
             Pta: true,
             avalaible: true,
+            cart: false
         },
         Iphone8: {
             Name: "Iphone 8",
@@ -27,6 +28,7 @@ var mobileProducts = {
             Prices: "108,610",
             Pta: true,
             avalaible: true,
+            cart: false
         },
         iphoneX: {
             Name: "Iphone X",
@@ -40,6 +42,7 @@ var mobileProducts = {
             Prices: "144,999",
             Pta: true,
             avalaible: true,
+            cart: false
         },
         Iphone11: {
             Name: "Iphone 11",
@@ -53,6 +56,7 @@ var mobileProducts = {
             Prices: "178,000",
             Pta: true,
             avalaible: true,
+            cart: false
         },
         Iphone12: {
             Name: "Iphone 12",
@@ -66,6 +70,7 @@ var mobileProducts = {
             Prices: "179,999",
             Pta: true,
             avalaible: true,
+            cart: false
         }
     },
     Samsung: {
@@ -81,6 +86,7 @@ var mobileProducts = {
             Prices: "176,499",
             Pta: true,
             avalaible: true,
+            cart: false
         },
         galaxy_A35: {
             Name: "Samsung Galaxy A35",
@@ -94,6 +100,7 @@ var mobileProducts = {
             Prices: "114,999",
             Pta: true,
             avalaible: true,
+            cart: false
         },
         galaxy_A06: {
             Name: "Samsung Galaxy A05",
@@ -107,6 +114,7 @@ var mobileProducts = {
             Prices: "36,499",
             Pta: true,
             avalaible: true,
+            cart: false
         }
     },
     Infinix: {
@@ -122,6 +130,7 @@ var mobileProducts = {
             Prices: "45,999",
             Pta: true,
             avalaible: true,
+            cart: false
         },
         note_40: {
             Name: "Infinix Note 40",
@@ -135,6 +144,7 @@ var mobileProducts = {
             Prices: "54,999",
             Pta: true,
             avalaible: true,
+            cart: false
         },
         hot_30: {
             Name: "Infinix Hot 30",
@@ -148,6 +158,7 @@ var mobileProducts = {
             Prices: "34,999",
             Pta: true,
             avalaible: true,
+            cart: false
         }
 
     },
@@ -164,6 +175,7 @@ var mobileProducts = {
             Prices: "24,799",
             Pta: true,
             avalaible: true,
+            cart: false
         },
         spark_20: {
             Name: "Tecno Spark 20",
@@ -177,6 +189,7 @@ var mobileProducts = {
             Prices: "31,799",
             Pta: true,
             avalaible: true,
+            cart: false
         },
         camon_20: {
             Name: "Tecno Camon 20",
@@ -190,6 +203,7 @@ var mobileProducts = {
             Prices: "41,499",
             Pta: true,
             avalaible: true,
+            cart: false
         }
     }
 
@@ -200,7 +214,6 @@ let productCard;
 
 for (var phones in mobileProducts) {
     for (var mobileType in mobileProducts[phones]) {
-        console.log(mobileProducts[phones][mobileType].profilePicture);
         productContainer = document.getElementById("product-container");
         // Product Card 
         let productCard = document.createElement("div");
@@ -271,16 +284,15 @@ for (var phones in mobileProducts) {
         </div>
         <span id= "price-tag">Prices : ${mobileProducts[phones][mobileType].Prices}</span>
         <div class = "specs-btn-container">
-        <button id="cart-btn"> Add to Cart </button>
+        <button id="cart-btn" onclick= "addingItemCart(this)"> Add to Cart </button>
         <button id="like-btn"> Like </button>
         </div>
         </div>
         </div>`
 
         productCard.appendChild(specsContainer);
-        console.log(productCard);
-
     }
+
 }
 
 
@@ -304,51 +316,56 @@ function showSpecs(element) {
     productContent.style.zIndex = "-1";
     specsBoxContainer.style.display = "flex";
     document.body.style.overflow = "hidden";
-    specsBoxContainer.classList.add("back-drop-filter")
+    specsBoxContainer.classList.add("back-drop-filter");
 }
 
 
 function removeSpecs(element) {
     let specsBoxContainer = element.parentElement;
     specsBoxContainer.style.display = "none";
+    document.body.style.overflowY = "scroll";
 }
 
 
-// OnInput Function in Search Bar 
-let userSearchInput = document.getElementById("search-input");
-let inputFromUser = document.createElement("div");
-inputFromUser.className = "input-from-user";
-function takingValueSearch(element) {
-    inputFromUser.innerHTML = `
-    <p>
-    <span><i class="fa-solid fa-magnifying-glass"></i><span>
-    ${element.value}</p>
-    `
-    searchSuggestionContainer.appendChild(inputFromUser);
+// // add to Cart 
+// let cartCounter = document.getElementById('cart-count');
+// let cartItem = 0;
+// function addingItemCart(element) {
+//     cartItem++;
+//     cartCounter.innerText = cartItem;
+// }
 
-    userSearchInput.addEventListener("focus", function () {
-        searchSuggestionContainer.style.display = "flex";
-    })
 
-    userSearchInput.addEventListener("blur", function () {
-        searchSuggestionContainer.style.display = "none";
-    })
+// Item Search Functionality 
+let phoneSelect = document.getElementById("phone-select");
+let modelSelect = document.getElementById("model-select");
+for (var mobilePhones in mobileProducts) {
+    let phoneOption = document.createElement("option");
+    phoneOption.value = mobilePhones;
+    phoneOption.innerText = mobilePhones;
+    phoneSelect.appendChild(phoneOption);
 }
 
-let presentItems = [];
-for (var items in mobileProducts) {
-    for (var keys in mobileProducts[items]) {
-        presentItems.push(mobileProducts[items][keys].Name)
+function setPhoneValue(element) {
+    // Model Options 
+    let phoneSearchValue = document.getElementById("phone-select").value;
+    if(phoneSearchValue === "Select-Phone"){
+       modelSelect.length = 1;
+       modelSelect.setAttribute("disabled" , "true"); 
     }
-}
-let userSearchItem;
-function catchSearch() {
-    userSearchItem = userSearchInput.value;
-    console.log(userSearchItem);
-    for (var i = 0; i < presentItems.length; i++) {
-           
+    modelSelect.length = 1;
+    for (var models in mobileProducts[phoneSearchValue]) {
+        let modelOptions = document.createElement("Option");
+        modelOptions.value = models;
+        modelOptions.innerText = models;
+        modelSelect.appendChild(modelOptions);
+        modelSelect.removeAttribute("disabled");
     }
 
+    modelSelect.addEventListener("change" , function(){
+        let modelSearchValue = modelSelect.value;
+        console.log(modelSearchValue);
+    });
 }
 
 

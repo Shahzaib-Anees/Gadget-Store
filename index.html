@@ -21,14 +21,15 @@
                 </div>
 
                 <div id="search-navigation">
-                    <div class="search-bar">
-                        <input type="search" id="search-input" placeholder="Search for Item"
-                            oninput="takingValueSearch(this)">
-                        <button onclick="catchSearch()">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
+                    <select name="phone-select" id="phone-select" class="select-field" onchange="setPhoneValue(this)">
+                        <option value="Select-Phone">Select Phone</option>
+                    </select>
+                    <select name="model-select" id="model-select" class="select-field" disabled>
+                        <option value="Select-Model" >Select Model</option>
+                    </select>
+                    <div class="search-icon" onclick="getSearchValue()">
+                        <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
-                    <div id="search-suggestion"></div>
                 </div>
 
                 <div id="nav-links">
@@ -64,7 +65,7 @@
         </nav>
     </header>
 
-    <main>
+    <main id="main-sec">
         <div id="product-container"></div>
         <div id="prodect-specs-container">
 

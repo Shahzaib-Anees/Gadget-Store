@@ -138,7 +138,6 @@ body {
     flex-wrap: wrap;
     gap: 40px;
     padding: 60px 10px;
-    position: relative;
 }
 
 .product-card {
@@ -240,8 +239,8 @@ body {
     position: fixed;
     gap: 10px;
     z-index: 2;
-    top: 25%;
-    left: 30%;
+    top: 30vh;
+    left: 30vw;
     padding: 10px 20px;
     border-radius: 10px;
     background-color: #fff;

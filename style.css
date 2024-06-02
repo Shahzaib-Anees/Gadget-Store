@@ -364,7 +364,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #737373;
     padding: 3px 40px;
 }
 

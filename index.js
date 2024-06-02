@@ -71,6 +71,20 @@ var mobileProducts = {
             Pta: true,
             avalaible: true,
             cart: false
+        }, 
+        Iphone14: {
+            Name: "Iphone 14",
+            type: "Mobile",
+            color: "Gray",
+            ram: "6gb",
+            rom: "256gb",
+            batteryTime: "3279mAh",
+            display: "6.1 inches",
+            profilePicture: "./assests/Media/Iphone14-img.jpeg",
+            Prices: "179,999",
+            Pta: true,
+            avalaible: true,
+            cart: false
         }
     },
     Samsung: {
@@ -288,8 +302,8 @@ for (var phones in mobileProducts) {
         <button id="like-btn"> Like </button>
         </div>
         </div>
+        
         </div>`
-
         productCard.appendChild(specsContainer);
     }
 
@@ -346,15 +360,99 @@ for (var mobilePhones in mobileProducts) {
     phoneSelect.appendChild(phoneOption);
 }
 
-function setPhoneValue(element) {
+// Search Selection Filter
+
+function setPhoneValue() {
     // Model Options 
     let phoneSearchValue = document.getElementById("phone-select").value;
-    if(phoneSearchValue === "Select-Phone"){
-       modelSelect.length = 1;
-       modelSelect.setAttribute("disabled" , "true"); 
+    if (phoneSearchValue === "Select-Phone") {
+        modelSelect.length = 1;
+        modelSelect.setAttribute("disabled", "true");
+        alert("Select Phone is not a Correct Value")
     }
+    productContainer.innerHTML = "";
     modelSelect.length = 1;
     for (var models in mobileProducts[phoneSearchValue]) {
+        for (var mobileProperties in mobileProducts[phoneSearchValue][models]) {
+            // console.log(mobileProducts[phoneSearchValue][models].Name);
+            // Product Card 
+            let productCard = document.createElement("div");
+            productCard.className = "product-card";
+            productContainer.appendChild(productCard);
+            // Product Content 
+            let productContent = document.createElement("div");
+            productContent.setAttribute("id", "product-content");
+            productCard.appendChild(productContent);
+            productContent.setAttribute("onmouseenter", "viewMoreShow(this)");
+            productContent.setAttribute("onmouseover", "viewMoreShow(this)");
+            productContent.setAttribute("onmouseleave", "viewMoreHide(this)");
+
+            // View More Button 
+            let viewMoreButton = document.createElement("p");
+            viewMoreButton.className = "view-more";
+            viewMoreButton.innerText = "Quic-View >>";
+            viewMoreButton.setAttribute("onclick", "showSpecs(this)")
+            productCard.appendChild(viewMoreButton);
+
+
+
+            // Product COntent InnerHtml 
+            productContent.innerHTML = `
+        <div class = "productImageContainer" >
+        <img src = "${mobileProducts[phoneSearchValue][models].profilePicture}"/>
+        </div>
+        <div class = "product-about">
+        <p>${mobileProducts[phoneSearchValue][models].Name}</p>
+        <span>Rs ${mobileProducts[phoneSearchValue][models].Prices}</span>
+        </div>
+        `
+            // Pta Tag 
+            if (mobileProducts[phoneSearchValue][models].Pta) {
+                let ptaTag = document.createElement("div");
+                ptaTag.className = "pta-tag-container";
+                ptaTag.innerHTML = `
+            <img src = "./assests/Media/PTA-approved.png" alt = "Pta-logo" />
+            `
+                productContent.appendChild(ptaTag);
+            }
+            // // Specs Container
+            let availablility;
+            if (mobileProducts[phoneSearchValue][models].avalaible === true) {
+                availablility = "Available in Stocks";
+            } else {
+                availablility = "Out of Stock";
+            }
+
+            let specsContainer = document.createElement("div");
+            specsContainer.setAttribute("id", "specs-container");
+            specsContainer.innerHTML = `<div class= "cross-icon" onclick = "removeSpecs(this)">
+        <i class="fa-solid fa-xmark"></i>
+        </div>
+        <div class = "specs-content">
+        <div class="specs-image">
+        <img src = "${mobileProducts[phoneSearchValue][models].profilePicture}"/>
+        </div>
+        
+        <div class = "specs-about">
+        <h1>${mobileProducts[phoneSearchValue][models].Name}</h1>
+        <span id= "availablility"> ${availablility}</span>
+        <div class = "gen-info">
+        <span>Color : ${mobileProducts[phoneSearchValue][models].color}</span>
+        <span>Memory : ${mobileProducts[phoneSearchValue][models].ram} / ${mobileProducts[phoneSearchValue][models].rom}</span>
+        <span>Display : ${mobileProducts[phoneSearchValue][models].display}</span>
+        <span>Battery : ${mobileProducts[phoneSearchValue][models].batteryTime}</span>
+        </div>
+        <span id= "price-tag">Prices : ${mobileProducts[phoneSearchValue][models].Prices}</span>
+        <div class = "specs-btn-container">
+        <button id="cart-btn" onclick= "addingItemCart(this)"> Add to Cart </button>
+        <button id="like-btn"> Like </button>
+        </div>
+        </div>
+        
+        </div>`
+            productCard.appendChild(specsContainer);
+            break;
+        }
         let modelOptions = document.createElement("Option");
         modelOptions.value = models;
         modelOptions.innerText = models;
@@ -362,11 +460,88 @@ function setPhoneValue(element) {
         modelSelect.removeAttribute("disabled");
     }
 
-    modelSelect.addEventListener("change" , function(){
+    modelSelect.addEventListener("change", function () {
         let modelSearchValue = modelSelect.value;
-        console.log(modelSearchValue);
-    });
-}
+        productContainer.innerHTML = "";
+        for (var mobilePhonesModels in mobileProducts[phoneSearchValue][modelSearchValue]) {
+            // Product Card 
+            let productCard = document.createElement("div");
+            productCard.className = "product-card";
+            productContainer.appendChild(productCard);
+            // Product Content 
+            let productContent = document.createElement("div");
+            productContent.setAttribute("id", "product-content");
+            productCard.appendChild(productContent);
+            productContent.setAttribute("onmouseenter", "viewMoreShow(this)");
+            productContent.setAttribute("onmouseover", "viewMoreShow(this)");
+            productContent.setAttribute("onmouseleave", "viewMoreHide(this)");
+
+            // View More Button 
+            let viewMoreButton = document.createElement("p");
+            viewMoreButton.className = "view-more";
+            viewMoreButton.innerText = "Quic-View >>";
+            viewMoreButton.setAttribute("onclick", "showSpecs(this)")
+            productCard.appendChild(viewMoreButton);
 
 
 
+            // Product COntent InnerHtml 
+            productContent.innerHTML = `
+                   <div class = "productImageContainer" >
+                   <img src = "${mobileProducts[phoneSearchValue][modelSearchValue].profilePicture}"/>
+                   </div>
+                   <div class = "product-about">
+                   <p>${mobileProducts[phoneSearchValue][modelSearchValue].Name}</p>
+                   <span>Rs ${mobileProducts[phoneSearchValue][modelSearchValue].Prices}</span>
+                   </div>
+                   `
+            // Pta Tag 
+            if (mobileProducts[phoneSearchValue][modelSearchValue].Pta) {
+                let ptaTag = document.createElement("div");
+                ptaTag.className = "pta-tag-container";
+                ptaTag.innerHTML = `
+                       <img src = "./assests/Media/PTA-approved.png" alt = "Pta-logo" />
+                       `
+                productContent.appendChild(ptaTag);
+            }
+            // // Specs Container
+            let availablility;
+            if (mobileProducts[phoneSearchValue][modelSearchValue].avalaible === true) {
+                availablility = "Available in Stocks";
+            } else {
+                availablility = "Out of Stock";
+            }
+
+            let specsContainer = document.createElement("div");
+            specsContainer.setAttribute("id", "specs-container");
+            specsContainer.innerHTML = `<div class= "cross-icon" onclick = "removeSpecs(this)">
+                   <i class="fa-solid fa-xmark"></i>
+                   </div>
+                   <div class = "specs-content">
+                   <div class="specs-image">
+                   <img src = "${mobileProducts[phoneSearchValue][modelSearchValue].profilePicture}"/>
+                   </div>
+                   
+                   <div class = "specs-about">
+                   <h1>${mobileProducts[phoneSearchValue][modelSearchValue].Name}</h1>
+                   <span id= "availablility"> ${availablility}</span>
+                   <div class = "gen-info">
+                   <span>Color : ${mobileProducts[phoneSearchValue][modelSearchValue].color}</span>
+                   <span>Memory : ${mobileProducts[phoneSearchValue][modelSearchValue].ram} / ${mobileProducts[phoneSearchValue][modelSearchValue].rom}</span>
+                   <span>Display : ${mobileProducts[phoneSearchValue][modelSearchValue].display}</span>
+                   <span>Battery : ${mobileProducts[phoneSearchValue][modelSearchValue].batteryTime}</span>
+                   </div>
+                   <span id= "price-tag">Prices : ${mobileProducts[phoneSearchValue][modelSearchValue].Prices}</span>
+                   <div class = "specs-btn-container">
+                   <button id="cart-btn" onclick= "addingItemCart(this)"> Add to Cart </button>
+                   <button id="like-btn"> Like </button>
+                   </div>
+                   </div>
+                   
+                   </div>`
+            productCard.appendChild(specsContainer);
+            break;
+        }
+    }
+    )
+};

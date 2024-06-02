@@ -59,10 +59,6 @@ body {
     border-right: 1px solid #c6c5c4;
 }
 
-#item-type-select{
-    width: 80px;
-}
-
 .select-field:hover{
     outline: 1px solid var(--font-color);
     border-right: 1px solid var(--font-color);

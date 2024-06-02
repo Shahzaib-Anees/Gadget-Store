@@ -71,7 +71,7 @@ var mobileProducts = {
             Pta: true,
             avalaible: true,
             cart: false
-        }, 
+        },
         Iphone14: {
             Name: "Iphone 14",
             type: "Mobile",
@@ -89,7 +89,7 @@ var mobileProducts = {
     },
     Samsung: {
         galaxy_S21: {
-            Name: "Samsung Galaxy S21",
+            Name: "Galaxy S21",
             type: "Mobile",
             color: "Black",
             ram: "8gb",
@@ -103,7 +103,7 @@ var mobileProducts = {
             cart: false
         },
         galaxy_A35: {
-            Name: "Samsung Galaxy A35",
+            Name: "Galaxy A35",
             type: "Mobile",
             color: "Aqua",
             ram: "8gb",
@@ -117,7 +117,7 @@ var mobileProducts = {
             cart: false
         },
         galaxy_A06: {
-            Name: "Samsung Galaxy A05",
+            Name: "Galaxy A05",
             type: "Mobile",
             color: "Green",
             ram: "6gb",
@@ -133,7 +133,7 @@ var mobileProducts = {
     },
     Infinix: {
         hot_40_pro: {
-            Name: "Infinix Hot 40 Pro",
+            Name: "Hot 40 Pro",
             type: "Mobile",
             color: "Black",
             ram: "4gb",
@@ -147,7 +147,7 @@ var mobileProducts = {
             cart: false
         },
         note_40: {
-            Name: "Infinix Note 40",
+            Name: "Note 40",
             type: "Mobile",
             color: "Green",
             ram: "8gb",
@@ -161,7 +161,7 @@ var mobileProducts = {
             cart: false
         },
         hot_30: {
-            Name: "Infinix Hot 30",
+            Name: "Hot 30",
             type: "Mobile",
             color: "Black",
             ram: "8gb",
@@ -178,7 +178,7 @@ var mobileProducts = {
     },
     Tecno: {
         pova_06_pro: {
-            Name: "Tecno Pova 06 Pro",
+            Name: "Pova 06 Pro",
             type: "Mobile",
             color: "Silver",
             ram: "6gb",
@@ -192,7 +192,7 @@ var mobileProducts = {
             cart: false
         },
         spark_20: {
-            Name: "Tecno Spark 20",
+            Name: "Spark 20",
             type: "Mobile",
             color: "Black",
             ram: "8gb",
@@ -206,7 +206,7 @@ var mobileProducts = {
             cart: false
         },
         camon_20: {
-            Name: "Tecno Camon 20",
+            Name: "Camon 20",
             type: "Mobile",
             color: "Serenity Blue",
             ram: "4gb",
@@ -226,32 +226,34 @@ var mobileProducts = {
 let productContainer;
 let productCard;
 
-for (var phones in mobileProducts) {
-    for (var mobileType in mobileProducts[phones]) {
-        productContainer = document.getElementById("product-container");
-        // Product Card 
-        let productCard = document.createElement("div");
-        productCard.className = "product-card";
-        productContainer.appendChild(productCard);
-        // Product Content 
-        let productContent = document.createElement("div");
-        productContent.setAttribute("id", "product-content");
-        productCard.appendChild(productContent);
-        productContent.setAttribute("onmouseenter", "viewMoreShow(this)");
-        productContent.setAttribute("onmouseover", "viewMoreShow(this)");
-        productContent.setAttribute("onmouseleave", "viewMoreHide(this)");
+function showingDom() {
 
-        // View More Button 
-        let viewMoreButton = document.createElement("p");
-        viewMoreButton.className = "view-more";
-        viewMoreButton.innerText = "Quic-View >>";
-        viewMoreButton.setAttribute("onclick", "showSpecs(this)")
-        productCard.appendChild(viewMoreButton);
+    for (var phones in mobileProducts) {
+        for (var mobileType in mobileProducts[phones]) {
+            productContainer = document.getElementById("product-container");
+            // Product Card 
+            let productCard = document.createElement("div");
+            productCard.className = "product-card";
+            productContainer.appendChild(productCard);
+            // Product Content 
+            let productContent = document.createElement("div");
+            productContent.setAttribute("id", "product-content");
+            productCard.appendChild(productContent);
+            productContent.setAttribute("onmouseenter", "viewMoreShow(this)");
+            productContent.setAttribute("onmouseover", "viewMoreShow(this)");
+            productContent.setAttribute("onmouseleave", "viewMoreHide(this)");
+
+            // View More Button 
+            let viewMoreButton = document.createElement("p");
+            viewMoreButton.className = "view-more";
+            viewMoreButton.innerText = "Quic-View >>";
+            viewMoreButton.setAttribute("onclick", "showSpecs(this)")
+            productCard.appendChild(viewMoreButton);
 
 
 
-        // Product COntent InnerHtml 
-        productContent.innerHTML = `
+            // Product COntent InnerHtml 
+            productContent.innerHTML = `
         <div class = "productImageContainer" >
         <img src = "${mobileProducts[phones][mobileType].profilePicture}"/>
         </div>
@@ -260,26 +262,26 @@ for (var phones in mobileProducts) {
         <span>Rs ${mobileProducts[phones][mobileType].Prices}</span>
         </div>
         `
-        // Pta Tag 
-        if (mobileProducts[phones][mobileType].Pta) {
-            let ptaTag = document.createElement("div");
-            ptaTag.className = "pta-tag-container";
-            ptaTag.innerHTML = `
+            // Pta Tag 
+            if (mobileProducts[phones][mobileType].Pta) {
+                let ptaTag = document.createElement("div");
+                ptaTag.className = "pta-tag-container";
+                ptaTag.innerHTML = `
             <img src = "./assests/Media/PTA-approved.png" alt = "Pta-logo" />
             `
-            productContent.appendChild(ptaTag);
-        }
-        // // Specs Container
-        let availablility;
-        if (mobileProducts[phones][mobileType].avalaible === true) {
-            availablility = "Available in Stocks";
-        } else {
-            availablility = "Out of Stock";
-        }
+                productContent.appendChild(ptaTag);
+            }
+            // // Specs Container
+            let availablility;
+            if (mobileProducts[phones][mobileType].avalaible === true) {
+                availablility = "Available in Stocks";
+            } else {
+                availablility = "Out of Stock";
+            }
 
-        let specsContainer = document.createElement("div");
-        specsContainer.setAttribute("id", "specs-container");
-        specsContainer.innerHTML = `<div class= "cross-icon" onclick = "removeSpecs(this)">
+            let specsContainer = document.createElement("div");
+            specsContainer.setAttribute("id", "specs-container");
+            specsContainer.innerHTML = `<div class= "cross-icon" onclick = "removeSpecs(this)">
         <i class="fa-solid fa-xmark"></i>
         </div>
         <div class = "specs-content">
@@ -304,10 +306,13 @@ for (var phones in mobileProducts) {
         </div>
         
         </div>`
-        productCard.appendChild(specsContainer);
-    }
+            productCard.appendChild(specsContainer);
+        }
 
+    }
 }
+
+showingDom();
 
 
 function viewMoreShow(element) {
@@ -368,7 +373,10 @@ function setPhoneValue() {
     if (phoneSearchValue === "Select-Phone") {
         modelSelect.length = 1;
         modelSelect.setAttribute("disabled", "true");
-        alert("Select Phone is not a Correct Value")
+        alert("Select Phone is not a Correct Value");
+        productContainer.innerHTML = 0 ;
+        showingDom();
+        return;
     }
     productContainer.innerHTML = "";
     modelSelect.length = 1;
@@ -453,11 +461,14 @@ function setPhoneValue() {
             productCard.appendChild(specsContainer);
             break;
         }
+
+        // Phone Serach Options 
         let modelOptions = document.createElement("Option");
         modelOptions.value = models;
-        modelOptions.innerText = models;
+        modelOptions.innerText = mobileProducts[phoneSearchValue][models].Name;
         modelSelect.appendChild(modelOptions);
         modelSelect.removeAttribute("disabled");
+        console.log(mobileProducts[phoneSearchValue][models]);
     }
 
     modelSelect.addEventListener("change", function () {

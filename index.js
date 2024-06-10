@@ -374,7 +374,7 @@ function setPhoneValue() {
         modelSelect.length = 1;
         modelSelect.setAttribute("disabled", "true");
         alert("Select Phone is not a Correct Value");
-        productContainer.innerHTML = 0 ;
+        productContainer.innerHTML = 0;
         showingDom();
         return;
     }
@@ -555,4 +555,6 @@ function setPhoneValue() {
         }
     }
     )
+    let foot = document.getElementById("footer");
+    foot.style.display = "none"
 };
